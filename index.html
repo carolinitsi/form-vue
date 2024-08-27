@@ -1,0 +1,39 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+<link rel="stylesheet" type="text/css" href="Styles/styles.css">
+<main id="app">
+    <div class="progress__bar">
+        <div class="progress" :style="{width}">
+
+        </div>
+    </div>
+    <div class="conteudo">
+        <div class="container__img">
+            <img src="Styles/imagens/img-green.png"/>
+        </div>
+        <form class="form" @submit.prevent="onSubmit">
+            <h1 class="form__title">Inscreva-se</h1>
+            <label class="form__label">Nome</label>
+            <input class="form__input" type="text" v-model="nome"/>
+            <label class="form__label">Sobrenome</label>
+            <input class="form__input" type="text" v-model="sobrenome"/>
+            <label class="form__label">E-mail</label>
+            <input class="form__input" type="email" v-model="email"/>
+            <label class="form__label">Cep</label>
+            <input class="form__input" @focusout="validaCep" :class="{style_error:style_error}" maxlength="9" type="text" v-model="cep" />
+            <span class="menssagem_error">{{error_cep}}</span>
+            <label class="form__label">Rua</label>
+            <input disabled class="form__input" type="text" v-model="rua" />
+            <label class="form__label">Bairro</label>
+            <input disabled ="form__input" type="text" v-model="bairro" />
+            <span class="menssagem_error">{{error}}</span>
+            <button class="form__btn" type="submit" @click="validaForm">Enviar</button>
+            <div v-html="messege"></div>
+        </form>
+        <div :class="{loader : loader}" v-html="imagem_loader">
+        </div>
+    </div>
+</main>
+
+<script src="./app.js"></script>
